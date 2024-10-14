@@ -7,7 +7,9 @@ import numpy as np
 df = pd.read_csv("medical_examination.csv")
 
 # 2
-df['overweight'] = (df['weight'] / ((df['height'] / 100) ** 2)).apply(lambda x : 1 if x > 25 else 0)
+height_in_meters = df['height']/100
+
+df['overweight'] = ((df['weight'] / height_in_meters) ** 2).apply(lambda x : 1 if x > 25 else 0)
 
 # 3
 df['cholesterol'] = df['cholesterol'].apply(lambda x: 0 if x == 1 else 1)
